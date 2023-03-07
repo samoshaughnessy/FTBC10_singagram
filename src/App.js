@@ -1,83 +1,51 @@
-import logo from "./logo.svg";
+import {
+  // createBrowserRouter,
+  // RouterProvider,
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+import Landing from "./Components/Landing";
+import Login from "./Components/Login";
+import Form from "./Components/Form";
+import ErrorPage from "./Components/ErrorPage";
 import "./App.css";
-import React from "react";
-import { onChildAdded, ref } from "firebase/database";
-import { database, auth } from "./firebase";
-import Form from "./Form.js";
-import Login from "./Login.js";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import Navbar from "./Components/Navbar";
 
-// Save the Firebase message folder name as a constant to avoid bugs due to misspelling
-const DB_MESSAGES_KEY = "messages";
+// v1
+// export default function App() {
+//   const router = createBrowserRouter([
+//     {
+//       path: "/",
+//       element: <Landing />,
+//       errorElement: <ErrorPage />,
+//     },
+//     { path: "auth", element: <Login /> },
+//     { path: "form", element: <Form /> },
+//   ]);
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    // Initialise empty messages array in state to keep local state in sync with Firebase
-    // When Firebase changes, update local state, which will update local UI
-    this.state = {
-      messages: [],
-      isLoggedIn: false,
-      email: "",
-    };
-  }
+//   return (
+//     <div>
+//       <RouterProvider router={router} />;
+//     </div>
+//   );
+// }
 
-  componentDidMount() {
-    const messagesRef = ref(database, DB_MESSAGES_KEY);
-    onChildAdded(messagesRef, (data) => {
-      this.setState((state) => ({
-        messages: [...state.messages, { key: data.key, val: data.val() }],
-      }));
-    });
+// v2
 
-    onAuthStateChanged(auth, (user) => {
-      console.log(user);
-      this.setState({ isLoggedIn: true, email: user.email });
-    });
-  }
-
-  render() {
-    // Convert messages in state to message JSX elements to render
-    let messageListItems = this.state.messages.map((message) => (
-      <li key={message.key}>
-        {message.val.message} - {message.val.date}
-        {message.val.url ? (
-          <img src={message.val.url} alt={message.val.url} />
-        ) : (
-          "No url"
-        )}
-      </li>
-    ));
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <h2>{this.state.email}</h2>
-          {this.state.isLoggedIn ? <Form /> : <Login />}
-          {this.state.isLoggedIn ? (
-            <button
-              onClick={() => {
-                signOut(auth).then(() => {
-                  this.setState({
-                    isLoggedIn: false,
-                    email: "",
-                  });
-                });
-              }}
-            >
-              Logout
-            </button>
-          ) : null}
-
-          <p>?</p>
-          <ol>{messageListItems}</ol>
-        </header>
-      </div>
-    );
-  }
+export default function App2() {
+  return (
+    <div className="App-header">
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Landing hello="yabing" />}>
+            <Route path="form" element={<Form />} />
+            <Route path="login" element={<Login />} />
+          </Route>
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
 }
-
-export default App;

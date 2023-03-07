@@ -1,11 +1,13 @@
 import React from "react";
 import { push, ref, set } from "firebase/database";
-import { database, storage } from "./firebase";
+import { database, storage } from "../firebase";
 import {
   ref as storageRef,
   uploadBytes,
   getDownloadURL,
 } from "firebase/storage";
+// import Navbar from "./Navbar";
+import { useNavigate } from "react-router-dom"; // only be used in a function
 
 const DB_MESSAGES_KEY = "messages";
 const STORAGE_FILES_KEY = "images/";
@@ -48,6 +50,7 @@ export default class Form extends React.Component {
   render() {
     return (
       <div>
+        {/* // V1<Navbar /> */}
         <input
           type="text"
           value={this.state.message}
