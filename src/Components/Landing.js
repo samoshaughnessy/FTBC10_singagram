@@ -59,6 +59,7 @@ class Landing extends React.Component {
       <div className="App">
         <header>
           <p>{this.props.hello}</p>
+          <p>Redeployed with circle CI</p>
           <Outlet />
 
           <img src={logo} className="App-logo" alt="logo" />
