@@ -2,9 +2,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../firebase";
+import { useContext } from "react";
+import { UserContext } from "../App";
 
 export default function Navbar() {
   const navigate = useNavigate();
+  const theme = useContext(UserContext);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [email, setEmail] = useState("");
   useEffect(() => {
@@ -21,6 +24,9 @@ export default function Navbar() {
 
   return (
     <div className="App-header">
+      <p>{theme.name}</p>
+      <p>{theme.favFood}</p>
+
       {isLoggedIn ? email : "Not logged in yet"}
 
       <Link to="/">Landing</Link>

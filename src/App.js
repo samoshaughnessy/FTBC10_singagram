@@ -11,6 +11,7 @@ import Form from "./Components/Form";
 import ErrorPage from "./Components/ErrorPage";
 import "./App.css";
 import Navbar from "./Components/Navbar";
+import React from "react";
 
 // v1
 // export default function App() {
@@ -32,19 +33,27 @@ import Navbar from "./Components/Navbar";
 // }
 
 // v2
-
+const fakeUser = {
+  name: "Sam",
+  favFood: "Potatoes",
+};
+export const UserContext = React.createContext(fakeUser);
 export default function App2() {
+  // make a state and update it
+  // to update the UserContext Provider below
   return (
     <div className="App-header">
       <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Landing hello="yabing" />}>
-            <Route path="form" element={<Form />} />
-            <Route path="login" element={<Login />} />
-          </Route>
-          <Route path="*" element={<ErrorPage />} />
-        </Routes>
+        <UserContext.Provider value={fakeUser}>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Landing hello="yabing" />}>
+              <Route path="form" element={<Form />} />
+              <Route path="login" element={<Login />} />
+            </Route>
+            <Route path="*" element={<ErrorPage />} />
+          </Routes>
+        </UserContext.Provider>
       </BrowserRouter>
     </div>
   );
