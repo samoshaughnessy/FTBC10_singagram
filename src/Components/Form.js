@@ -7,7 +7,7 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 // import Navbar from "./Navbar";
-import { useNavigate } from "react-router-dom"; // only be used in a function
+// import { useNavigate } from "react-router-dom"; // only be used in a function
 import Input from "./Input";
 
 const DB_MESSAGES_KEY = "messages";
