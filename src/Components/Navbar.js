@@ -26,6 +26,7 @@ export default function Navbar() {
     <div className="App-header">
       <p>{theme.name}</p>
       <p>{theme.favFood}</p>
+      <h2>Second update using netlify</h2>
 
       {isLoggedIn ? email : "Not logged in yet"}
 
