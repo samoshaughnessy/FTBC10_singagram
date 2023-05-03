@@ -27,6 +27,7 @@ export default function Navbar() {
       <p>{theme.name}</p>
       <p>{theme.favFood}</p>
       <h2>Second update using netlify</h2>
+      <h2>third update using netlify</h2>
 
       {isLoggedIn ? email : "Not logged in yet"}
 
