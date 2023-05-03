@@ -46,6 +46,7 @@ export default function App2() {
       <BrowserRouter>
         <UserContext.Provider value={fakeUser}>
           <Navbar />
+          <h1>Circle CI put me here!</h1>
           <Routes>
             <Route path="/" element={<Landing hello="yabing" />}>
               <Route path="form" element={<Form />} />
