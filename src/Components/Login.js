@@ -4,8 +4,8 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase";
 import { useState, useEffect } from "react";
-import axios from "axios";
-import Navbar from "./Navbar";
+// import axios from "axios";
+// import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
 
 export default function Login(props) {

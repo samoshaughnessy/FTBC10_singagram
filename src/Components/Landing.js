@@ -5,11 +5,11 @@ import {
   database,
   //  auth
 } from "../firebase";
-import { Outlet, Route, Routes } from "react-router-dom";
+import { Outlet } from "react-router-dom"; // Route, Routes
 
 // import { Link } from "react-router-dom";
 // import Form from "./Form.js";
-import Login from "./Login.js";
+// import Login from "./Login.js";
 // import { onAuthStateChanged, signOut } from "firebase/auth";
 // import Navbar from "./Navbar";
 
